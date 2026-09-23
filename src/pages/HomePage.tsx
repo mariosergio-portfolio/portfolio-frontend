@@ -33,7 +33,7 @@ export default function HomePage() {
               value="mariosergio30@gmail.com"
               href="mailto:mariosergio30@gmail.com"
             />
-            <ContactRow icon="📍" label="Home" value="Braga, Braga (Portugal)" />
+            <ContactRow icon="📍" label="Home" value="Braga, Portugal" />
           </ul>
         </div>
       </div>

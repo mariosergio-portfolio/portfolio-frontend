@@ -30,7 +30,7 @@ export default function ContactPage() {
           <span className="text-2xl">📍</span>
           <div>
             <h2 className="font-semibold text-gray-900">Location</h2>
-            <p className="mt-1 text-gray-600">Braga, Braga (Portugal)</p>
+            <p className="mt-1 text-gray-600">Braga Portugal</p>
           </div>
         </div>
       </div>
