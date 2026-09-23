@@ -1,6 +1,6 @@
 ## Portfolio Frontend
 
-applications/user cases
+UI client to easy try the backend applications/user cases
 
 ### Mario Silva · Software Architect
 
