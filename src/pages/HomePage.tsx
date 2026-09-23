@@ -8,19 +8,13 @@ export default function HomePage() {
             MS
           </div>
           <h1 className="mb-2 text-5xl font-bold text-gray-900">Portfolio</h1>
-          <p className="text-lg text-gray-500">Mario Sérgio · Software Developer</p>
+          <p className="text-lg text-gray-500">Mario Silva · Software Architect</p>
         </div>
 
         {/* Contact card */}
         <div className="rounded-2xl border border-gray-200 bg-white p-8 shadow-sm">
           <h2 className="mb-6 text-lg font-semibold text-gray-700">Contact &amp; Links</h2>
-          <ul className="space-y-4">
-            <ContactRow
-              icon="✉️"
-              label="Email"
-              value="mariosergio30@gmail.com"
-              href="mailto:mariosergio30@gmail.com"
-            />
+          <ul className="space-y-4">          
             <ContactRow
               icon="💼"
               label="LinkedIn"
@@ -29,9 +23,15 @@ export default function HomePage() {
             />
             <ContactRow
               icon="🦊"
-              label="GitLab"
-              value="gitlab.com/mariosergio30"
-              href="https://gitlab.com/mariosergio30"
+              label="GitHub - exploratory projects"
+              value="github.com/mariosergio-portfolio/"
+              href="https://github.com/orgs/mariosergio-portfolio/repositories"
+            />
+            <ContactRow
+              icon="✉️"
+              label="Email"
+              value="mariosergio30@gmail.com"
+              href="mailto:mariosergio30@gmail.com"
             />
             <ContactRow icon="📍" label="Home" value="Braga, Braga (Portugal)" />
           </ul>

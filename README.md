@@ -1,6 +1,17 @@
 # Portfolio Frontend
 
-Personal portfolio site for **Mario Sérgio**, built with React 19, TypeScript, Vite, and Tailwind CSS. Showcases projects, skills, and a set of interactive engineering case studies.
+Personal portfolio site for **Mario Sérgio**
+
+## Portfolio
+
+### Mario Silva · Software Architect
+
+**Contact & Links**
+
+- 💼 LinkedIn: [linkedin.com/in/mariosergio30](https://www.linkedin.com/in/mariosergio30)
+- 🦊 GitHub - exploratory projects: [github.com/mariosergio-portfolio/](https://github.com/orgs/mariosergio-portfolio/repositories)
+- ✉️ Email: [mariosergio30@gmail.com](mailto:mariosergio30@gmail.com)
+- 📍 Home: Braga, Braga (Portugal)
 
 ## Pages
 
@@ -9,13 +20,14 @@ Personal portfolio site for **Mario Sérgio**, built with React 19, TypeScript, 
 - **Contact** — contact channels (email, LinkedIn, GitLab, location).
 - **Case Studies** — a set of focused, interactive technical demos:
   - **Parallelism — Java vs Go** — compares parallel counter execution between a Java thread-pool server and a Go goroutine server, against local and AWS-hosted environments.
-  - **SSE** — practical exploration of Server-Sent Events as a unidirectional streaming mechanism, compared with WebSockets.
-  - **Circuit Breaker** — deep dive into the Circuit Breaker resilience pattern (closed/open/half-open) and its implementation with Resilience4j / Go equivalents.
-  - **Customers API** — a live UI for the [customers-api](https://github.com/mariosergio-portfolio/customers-api) backend: search/filter customers by company, name and country, and play back AWS Polly-synthesized pronunciations of each name.
+  - **Customers API** — a live UI for the [customers-api](https://github.com/mariosergio-portfolio/customers-api) backend: search/filter customers by company, name and country, and play back as Polly-synthesized pronunciations of each customer name.
+  **Here we explore the AWS AI and Machine Learning Services: Polly (text to speach); Amazon Bedrock (natural language processing).**
 
     ![Customers API case study](README_UI_1.png)
     *Filtering customers and playing back a Polly-synthesized pronunciation, powered by [customers-api](https://github.com/mariosergio-portfolio/customers-api).*
-
+- **SSE** — practical exploration of Server-Sent Events as a unidirectional streaming mechanism, compared with WebSockets.
+- **Circuit Breaker** — deep dive into the Circuit Breaker resilience pattern (closed/open/half-open) and its implementation with Resilience4j / Go equivalents.
+  
 ## Tech stack
 
 - React 19, React Router 7

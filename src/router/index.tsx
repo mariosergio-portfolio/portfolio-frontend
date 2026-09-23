@@ -6,15 +6,16 @@ const ProjectsPage     = lazy(() => import('@/pages/ProjectsPage'));
 const ContactPage      = lazy(() => import('@/pages/ContactPage'));
 
 const ParallelismPage    = lazy(() => import('@/pages/case-studies/ParallelismPage'));
+const CustomersPage      = lazy(() => import('@/pages/case-studies/CustomersPage'));
 const SsePage            = lazy(() => import('@/pages/case-studies/SsePage'));
 const CircuitBreakerPage = lazy(() => import('@/pages/case-studies/CircuitBreakerPage'));
-const CustomersPage      = lazy(() => import('@/pages/case-studies/CustomersPage'));
+
 
 const CASE_STUDIES = [
   { to: '/case-studies/parallelism',    label: 'Parallelism — Java vs GoLang' },
-  { to: '/case-studies/sse',            label: 'SSE' },
-  { to: '/case-studies/circuit-breaker', label: 'Circuit Breaker' },
   { to: '/case-studies/customers',      label: 'Customers API' },
+  { to: '/case-studies/sse',            label: 'SSE' },
+  { to: '/case-studies/circuit-breaker', label: 'Circuit Breaker' },  
 ];
 
 function Navbar() {

@@ -4,14 +4,7 @@ export default function ContactPage() {
       <h1 className="mb-2 text-4xl font-bold text-gray-900">Contact</h1>
       <p className="mb-10 text-gray-500">Feel free to reach out through any of the channels below.</p>
 
-      <div className="space-y-6">
-        <ContactCard
-          icon="✉️"
-          title="Email"
-          description="Best way to reach me for professional enquiries."
-          cta="mariosergio30@gmail.com"
-          href="mailto:mariosergio30@gmail.com"
-        />
+      <div className="space-y-6">       
         <ContactCard
           icon="💼"
           title="LinkedIn"
@@ -24,7 +17,14 @@ export default function ContactPage() {
           title="GitLab"
           description="Browse my open-source work and contributions."
           cta="gitlab.com/mariosergio30"
-          href="https://gitlab.com/mariosergio30"
+          href="https://github.com/orgs/mariosergio-portfolio/repositories"
+        />
+         <ContactCard
+          icon="✉️"
+          title="Email"
+          description="Best way to reach me for professional enquiries."
+          cta="mariosergio30@gmail.com"
+          href="mailto:mariosergio30@gmail.com"
         />
         <div className="flex items-start gap-4 rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
           <span className="text-2xl">📍</span>
