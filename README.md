@@ -1,6 +1,6 @@
 ## Portfolio Frontend
 
-UI client for the backend applications Live running
+applications/user cases
 
 ### Mario Silva · Software Architect
 
