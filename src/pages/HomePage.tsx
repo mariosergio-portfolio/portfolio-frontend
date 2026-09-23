@@ -24,8 +24,8 @@ export default function HomePage() {
             <ContactRow
               icon="🦊"
               label="GitHub - exploratory projects"
-              value="github.com/mariosergio-portfolio/"
-              href="https://github.com/orgs/mariosergio-portfolio/repositories"
+            contac
+              href="https://github.com/mariosergio-portfolio"
             />
             <ContactRow
               icon="✉️"

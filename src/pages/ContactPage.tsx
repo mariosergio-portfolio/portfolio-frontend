@@ -15,9 +15,9 @@ export default function ContactPage() {
         <ContactCard
           icon="🦊"
           title="GitLab"
-          description="Browse my open-source work and contributions."
-          cta="gitlab.com/mariosergio30"
-          href="https://github.com/orgs/mariosergio-portfolio/repositories"
+          description="Browse my open-source work and contributions."          
+          cta="github.com/mariosergio-portfolio/"
+          href="https://github.com/mariosergio-portfolio"
         />
          <ContactCard
           icon="✉️"
