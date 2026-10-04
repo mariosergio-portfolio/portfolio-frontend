@@ -1,4 +1,10 @@
 import { useState, useRef, useCallback } from 'react';
+import { BASE_URL } from './customers/api';
+import CompanyAssistantSection from './customers/CompanyAssistantSection';
+import GeneralAssistantSection from './customers/GeneralAssistantSection';
+import { GreetingButton, GreetingResult } from './customers/BirthdayGreeting';
+import { useBirthdayGreeting } from './customers/useBirthdayGreeting';
+import { FieldLabel, SectionCard, StatusBadge } from './customers/shared';
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -29,9 +35,6 @@ interface FetchState {
 type PlayState = 'idle' | 'loading' | 'playing' | 'error';
 
 // ─── Constants ────────────────────────────────────────────────────────────────
-
-const BASE_URL = (import.meta.env.VITE_CUSTOMERS_BASE as string | undefined)?.trim()
-  ?? 'http://localhost:8082';
 
 // All values from software.amazon.awssdk.services.polly.model.LanguageCode
 const POLLY_LANGUAGES: { code: string; label: string }[] = [
@@ -233,25 +236,6 @@ function PlayButton({ customerPk, customerName, language }: {
 
 // ─── Sub-components ──────────────────────────────────────────────────────────
 
-function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div className="rounded-xl border border-gray-200 bg-white shadow-sm">
-      <div className="border-b border-gray-100 px-6 py-4">
-        <h2 className="text-base font-semibold text-gray-800">{title}</h2>
-      </div>
-      <div className="px-6 py-5">{children}</div>
-    </div>
-  );
-}
-
-function FieldLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <label className="text-xs font-semibold uppercase tracking-wide text-gray-400">
-      {children}
-    </label>
-  );
-}
-
 function TextInput({
   id,
   value,
@@ -284,16 +268,42 @@ function TextInput({
   );
 }
 
-function StatusBadge({ status }: { status: number }) {
-  const ok = status >= 200 && status < 300;
+function CustomerRow({ c, language }: { c: CustomerResponse; language: string }) {
+  const greeting = useBirthdayGreeting(c.customerPk);
   return (
-    <span
-      className={`rounded-full px-2 py-0.5 text-xs font-semibold ${
-        ok ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
-      }`}
-    >
-      HTTP {status}
-    </span>
+    <>
+      <tr className="hover:bg-gray-50">
+        <td className="px-3 py-2">
+          <div className="flex items-center gap-2">
+            <PlayButton customerPk={c.customerPk} customerName={c.name} language={language} />
+            <GreetingButton
+              customerName={c.name}
+              loading={greeting.state.loading}
+              onClick={() => {
+                void greeting.run();
+              }}
+            />
+          </div>
+        </td>
+        <td className="px-4 py-2.5 font-mono text-xs text-gray-700">{c.id}</td>
+        <td className="px-4 py-2.5 font-medium text-gray-800">{c.name}</td>
+        <td className="px-4 py-2.5 text-gray-600">{c.email}</td>
+        <td className="px-4 py-2.5 text-gray-600">{c.age ?? '—'}</td>
+        <td className="px-4 py-2.5 text-gray-600">{c.country ?? '—'}</td>
+        <td className="px-4 py-2.5 font-mono text-xs text-gray-600">{c.phone ?? '—'}</td>
+      </tr>
+      {greeting.open && (
+        <tr>
+          <td colSpan={7} className="bg-gray-50 px-4 py-3">
+            <GreetingResult
+              customerPk={c.customerPk}
+              state={greeting.state}
+              onClose={greeting.close}
+            />
+          </td>
+        </tr>
+      )}
+    </>
   );
 }
 
@@ -311,7 +321,7 @@ function CustomerTable({ customers, language }: { customers: CustomerResponse[];
       <table className="w-full text-sm">
         <thead className="sticky top-0 z-10 bg-gray-50">
           <tr>
-            {['', 'ID', 'Name', 'Email', 'Age', 'Country', 'Phone'].map(h => (
+            {['Actions', 'ID', 'Name', 'Email', 'Age', 'Country', 'Phone'].map(h => (
               <th
                 key={h}
                 className="whitespace-nowrap px-4 py-2.5 text-left text-xs font-semibold text-gray-500"
@@ -323,17 +333,7 @@ function CustomerTable({ customers, language }: { customers: CustomerResponse[];
         </thead>
         <tbody className="divide-y divide-gray-100">
           {customers.map(c => (
-            <tr key={c.id} className="hover:bg-gray-50">
-              <td className="px-3 py-2">
-                <PlayButton customerPk={c.customerPk} customerName={c.name} language={language} />
-              </td>
-              <td className="px-4 py-2.5 font-mono text-xs text-gray-700">{c.id}</td>
-              <td className="px-4 py-2.5 font-medium text-gray-800">{c.name}</td>
-              <td className="px-4 py-2.5 text-gray-600">{c.email}</td>
-              <td className="px-4 py-2.5 text-gray-600">{c.age ?? '—'}</td>
-              <td className="px-4 py-2.5 text-gray-600">{c.country ?? '—'}</td>
-              <td className="px-4 py-2.5 font-mono text-xs text-gray-600">{c.phone ?? '—'}</td>
-            </tr>
+            <CustomerRow key={c.id} c={c} language={language} />
           ))}
         </tbody>
       </table>
@@ -405,16 +405,21 @@ export default function CustomersPage() {
         <h1 className="text-2xl font-bold text-gray-900">Customers API</h1>
         <p className="mt-1 text-sm text-gray-500">
           Browse and filter customers from the Planet Customers API by company, name, and country.
-          Click <strong>Play</strong> on any row to hear the customer name pronounced.
-          Powered by{' '}
-          <code className="rounded bg-gray-100 px-1 py-0.5 text-xs text-gray-700">
-            GET /api/companies/&#123;companyId&#125;/customers
-          </code>
-          {' '}and{' '}
-          <code className="rounded bg-gray-100 px-1 py-0.5 text-xs text-gray-700">
-            GET /api/customers/&#123;id&#125;/pronounce
-          </code>
-          .
+          On each row, click <strong>Pronounce</strong> to hear the customer name or{' '}
+          <strong>Greeting</strong> to have an AI model write a birthday greeting. Then ask the AI
+          questions about the company's customers, or send it any prompt. Powered by{' '}
+          {[
+            'GET /api/companies/{companyId}/customers',
+            'GET /api/customers/{customerPk}/pronounce',
+            'POST /api/customers/{customerPk}/birthday-greetings',
+            'POST /api/companies/{companyId}/ask',
+            'POST /api/bedrock/ask',
+          ].map((endpoint, i, all) => (
+            <span key={endpoint}>
+              <code className="rounded bg-gray-100 px-1 py-0.5 text-xs text-gray-700">{endpoint}</code>
+              {i < all.length - 1 ? ', ' : '.'}
+            </span>
+          ))}
         </p>
       </div>
 
@@ -574,6 +579,12 @@ export default function CustomersPage() {
         )}
 
       </SectionCard>
+
+      {/* ── Section 3 – Company AI assistant ── */}
+      <CompanyAssistantSection companyId={companyId} />
+
+      {/* ── Section 4 – General AI assistant ── */}
+      <GeneralAssistantSection />
     </div>
   );
 }

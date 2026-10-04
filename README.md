@@ -27,6 +27,20 @@ Environment variables are read from `.env` (see [.env](.env)) and consumed via `
 | `VITE_PARALLELISM_ENV_{N}_JAVA_BASE` | Base URL of the Java server for environment `N`. |
 | `VITE_PARALLELISM_ENV_{N}_GO_BASE` | Base URL of the Go server for environment `N`. |
 
+## Customers API case study
+
+The Customers page (`/case-studies/customers`) is a client for [customers-api](https://github.com/mariosergio-portfolio/customers-api) and covers all of its controllers:
+
+| Section | Endpoint |
+|---|---|
+| 1- Filters, 2- Results | `GET /api/companies/{companyId}/customers` |
+| Pronounce button on each row | `GET /api/customers/{customerPk}/pronounce` |
+| Greeting button on each row | `POST /api/customers/{customerPk}/birthday-greetings` |
+| 3- Ask about the company | `POST /api/companies/{companyId}/ask` (the AI model writes the SQL; the API runs it read-only) |
+| 4- General AI assistant | `POST /api/bedrock/ask` |
+
+The AI endpoints need the API's Bedrock access and quota to be set up; otherwise they answer with an error, which the page shows.
+
 ## Running locally
 
 Prerequisites: Node.js and npm.
@@ -52,7 +66,7 @@ npm run format    # format with Prettier
 ```
 src/
 ├── pages/
-│   ├── case-studies/   # Parallelism, SSE, Circuit Breaker, Customers API
+│   ├── case-studies/   # Parallelism, SSE, Circuit Breaker, Customers API (+ customers/ sections)
 │   ├── HomePage.tsx
 │   ├── ProjectsPage.tsx
 │   └── ContactPage.tsx
