@@ -22,7 +22,7 @@ Environment variables are read from `.env` (see [.env](.env)) and consumed via `
 
 | Variable | Description |
 |---|---|
-| `VITE_CUSTOMERS_BASE` | Base URL of the [customers-api](https://github.com/mariosergio-portfolio/customers-api) service, used by the Customers API case study page. Defaults to `http://localhost:8082`. |
+| `VITE_CUSTOMERS_BASE` | Base URL of the [customers-api](https://github.com/mariosergio-portfolio/customers-api) service, used by the Customers API case study page. Defaults to `http://localhost:8082/customers`. |
 | `VITE_PARALLELISM_ENV_{N}_LABEL` | Display label for parallelism environment `N`. |
 | `VITE_PARALLELISM_ENV_{N}_JAVA_BASE` | Base URL of the Java server for environment `N`. |
 | `VITE_PARALLELISM_ENV_{N}_GO_BASE` | Base URL of the Go server for environment `N`. |

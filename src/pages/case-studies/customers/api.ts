@@ -1,7 +1,7 @@
 // Shared by the Customers API case study: base URL, response types and a small POST helper.
 
 export const BASE_URL =
-  (import.meta.env.VITE_CUSTOMERS_BASE as string | undefined)?.trim() ?? 'http://localhost:8082';
+  (import.meta.env.VITE_CUSTOMERS_BASE as string | undefined)?.trim() ?? 'http://localhost:8082/customers';
 
 // ─── Response types (customers-api) ───────────────────────────────────────────
 
