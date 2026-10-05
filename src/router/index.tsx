@@ -7,6 +7,8 @@ const ContactPage      = lazy(() => import('@/pages/ContactPage'));
 
 const ParallelismPage    = lazy(() => import('@/pages/case-studies/ParallelismPage'));
 const CustomersPage      = lazy(() => import('@/pages/case-studies/CustomersPage'));
+const SuppliersPage      = lazy(() => import('@/pages/case-studies/SuppliersPage'));
+const CitiesPage         = lazy(() => import('@/pages/case-studies/CitiesPage'));
 const SsePage            = lazy(() => import('@/pages/case-studies/SsePage'));
 const CircuitBreakerPage = lazy(() => import('@/pages/case-studies/CircuitBreakerPage'));
 
@@ -14,6 +16,7 @@ const CircuitBreakerPage = lazy(() => import('@/pages/case-studies/CircuitBreake
 const CASE_STUDIES = [
   { to: '/case-studies/parallelism',    label: 'Parallelism — Java vs GoLang' },
   { to: '/case-studies/customers',      label: 'Customers API' },
+  { to: '/case-studies/suppliers',      label: 'Suppliers — PostGIS' },
   { to: '/case-studies/sse',            label: 'SSE' },
   { to: '/case-studies/circuit-breaker', label: 'Circuit Breaker' },  
 ];
@@ -106,6 +109,8 @@ function CaseStudiesLayout() {
             <Route path="sse"             element={<SsePage />} />
             <Route path="circuit-breaker" element={<CircuitBreakerPage />} />
             <Route path="customers"       element={<CustomersPage />} />
+            <Route path="suppliers"       element={<SuppliersPage />} />
+            <Route path="suppliers/cities" element={<CitiesPage />} />
           </Routes>
         </Suspense>
       </main>
